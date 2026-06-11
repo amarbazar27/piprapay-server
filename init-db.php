@@ -12,9 +12,22 @@ if (!$db_user || !$db_name) {
 }
 
 echo "Checking database connection...\n";
-$conn = @new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
-if ($conn->connect_error) {
-    echo "Database connection failed: " . $conn->connect_error . "\n";
+$conn = mysqli_init();
+if (!$conn) {
+    echo "mysqli_init failed\n";
+    exit(1);
+}
+
+// Enforce SSL if host contains tidbcloud.com
+if (strpos($db_host, 'tidbcloud.com') !== false || getenv('DB_SSL') === 'true') {
+    $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+    $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $db_port, NULL, MYSQLI_CLIENT_SSL);
+} else {
+    $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
+}
+
+if (!$connect_res) {
+    echo "Database connection failed: " . mysqli_connect_error() . "\n";
     exit(1);
 }
 

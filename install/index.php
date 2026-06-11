@@ -74,9 +74,19 @@
         }
     
         // Connect to DB
-        $conn = new mysqli($datahost, $dbUser, $dbPass, $dbName, $dataport);
-        if ($conn->connect_error) {
-            echo json_encode(["status" => "false", "message" => "Error: Database connection failed."]);
+        $conn = mysqli_init();
+        if (!$conn) {
+            echo json_encode(["status" => "false", "message" => "Error: Database initialization failed."]);
+            exit();
+        }
+        if (strpos($datahost, 'tidbcloud.com') !== false || getenv('DB_SSL') === 'true') {
+            $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+            $connect_res = @$conn->real_connect($datahost, $dbUser, $dbPass, $dbName, $dataport, NULL, MYSQLI_CLIENT_SSL);
+        } else {
+            $connect_res = @$conn->real_connect($datahost, $dbUser, $dbPass, $dbName, $dataport);
+        }
+        if (!$connect_res) {
+            echo json_encode(["status" => "false", "message" => "Error: Database connection failed: " . mysqli_connect_error()]);
             exit();
         }
     
@@ -178,7 +188,24 @@
         $dbUser   = $_POST['dbUser'];
         $dbPass   = $_POST['dbPass'];
         
-        $conn = @new mysqli($datahost, $dbUser, $dbPass, $dbName, $dataport);
+        $conn = mysqli_init();
+        if (!$conn) {
+            echo json_encode(["status" => "false", "message" => "Database initialization failed."]);
+            exit();
+        }
+        if (strpos($datahost, 'tidbcloud.com') !== false || getenv('DB_SSL') === 'true') {
+            $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+            $connect_res = @$conn->real_connect($datahost, $dbUser, $dbPass, $dbName, $dataport, NULL, MYSQLI_CLIENT_SSL);
+        } else {
+            $connect_res = @$conn->real_connect($datahost, $dbUser, $dbPass, $dbName, $dataport);
+        }
+        if (!$connect_res) {
+            echo json_encode([
+                "status" => "false",
+                "message" => "Connection failed: " . mysqli_connect_error()
+            ]);
+            exit();
+        }
     
         if ($conn->connect_error) {
             echo json_encode([

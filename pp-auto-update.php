@@ -132,8 +132,20 @@
     
         // SQL update
         if (file_exists($update_sql_path)) {
-            $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-            if ($conn->connect_error) {
+            $port = getenv('DB_PORT') ?: ($db_port ?: 3306);
+            $conn = mysqli_init();
+            if (!$conn) {
+                unlink($maintenance_file);
+                echo json_encode(["status" => "false", "message" => "DB initialization failed"]);
+                exit();
+            }
+            if (strpos($db_host, 'tidbcloud.com') !== false || getenv('DB_SSL') === 'true') {
+                $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+                $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $port, NULL, MYSQLI_CLIENT_SSL);
+            } else {
+                $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $port);
+            }
+            if (!$connect_res) {
                 unlink($maintenance_file);
                 echo json_encode(["status" => "false", "message" => "DB connection failed"]);
                 exit();

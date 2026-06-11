@@ -17,12 +17,23 @@
     use Dompdf\Dompdf;
 
     function connectDatabase() {
-        global $db_host, $db_user, $db_pass, $db_name;
+        global $db_host, $db_user, $db_pass, $db_name, $db_port;
+        
+        $port = getenv('DB_PORT') ?: ($db_port ?: 3306);
+        $conn = mysqli_init();
+        if (!$conn) {
+            die('mysqli_init failed');
+        }
+        
+        if (strpos($db_host, 'tidbcloud.com') !== false || getenv('DB_SSL') === 'true') {
+            $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+            $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $port, NULL, MYSQLI_CLIENT_SSL);
+        } else {
+            $connect_res = @$conn->real_connect($db_host, $db_user, $db_pass, $db_name, $port);
+        }
     
-        $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    
-        if ($conn->connect_error) {
-            die('Connection failed: ' . $conn->connect_error);
+        if (!$connect_res) {
+            die('Connection failed: ' . mysqli_connect_error());
         }
     
         return $conn;
