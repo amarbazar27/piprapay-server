@@ -652,7 +652,7 @@
         <div class="payment-footer">
             <div>Your payment is secured with 256-bit encryption</div>
             <div class="secure-badge">
-                <span>Powered by <a href="https://piprapay.com/" target="blank" style="color: <?php echo $setting['response'][0]['global_text_color']?>; text-decoration: none"><strong style="cursor: pointer">PipraPay</strong></a></span>
+                <span>made by <a href="https://daripallah.com" target="blank" style="color: <?php echo $setting['response'][0]['global_text_color']?>; text-decoration: none"><strong style="cursor: pointer">daripallah.com</strong></a></span>
             </div>
         </div>
     </div>
