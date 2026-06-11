@@ -1,4 +1,5 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
 $db_host = getenv('DB_HOST') ?: 'localhost';
 $db_port = getenv('DB_PORT') ?: '3306';
 $db_user = getenv('DB_USER');
@@ -53,6 +54,7 @@ foreach ($queries as $query) {
     if (!empty($query)) {
         if (!$conn->query($query)) {
             echo "Error running query: " . $conn->error . "\n";
+            echo "Failed Query: " . substr($query, 0, 200) . "...\n";
         }
     }
 }
