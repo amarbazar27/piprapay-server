@@ -18,6 +18,11 @@
 
     function connectDatabase() {
         global $db_host, $db_user, $db_pass, $db_name, $db_port;
+        static $cached_conn = null;
+        
+        if ($cached_conn !== null) {
+            return $cached_conn;
+        }
         
         $port = getenv('DB_PORT') ?: ($db_port ?: 3306);
         $conn = mysqli_init();
@@ -35,7 +40,8 @@
         if (!$connect_res) {
             die('Connection failed: ' . mysqli_connect_error());
         }
-    
+        
+        $cached_conn = $conn;
         return $conn;
     }
     
