@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "smtp-mailer",
+  "name": "SMTP Mailer",
+  "mrdr": "modules"
+}

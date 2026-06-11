@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "auto-verify-pending-payment",
+  "name": "Auto Verify Pending Payment",
+  "mrdr": "modules"
+}

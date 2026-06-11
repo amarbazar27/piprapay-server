@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "binance-manual",
+  "name": "Binance Manual",
+  "mrdr": "payment-gateway"
+}

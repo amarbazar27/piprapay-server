@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "pathao-pay-personal",
+  "name": "Pathao Pay Personal",
+  "mrdr": "payment-gateway"
+}

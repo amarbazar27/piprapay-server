@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "taptap-send",
+  "name": "Taptap Send",
+  "mrdr": "payment-gateway"
+}

@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "sslcommerz",
+  "name": "SSLCommerz",
+  "mrdr": "payment-gateway"
+}

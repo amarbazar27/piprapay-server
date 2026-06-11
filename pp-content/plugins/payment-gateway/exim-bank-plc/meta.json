@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "exim-bank-plc",
+  "name": "EXIM Bank PLC",
+  "mrdr": "payment-gateway"
+}

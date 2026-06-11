@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "dhaka-bank-plc",
+  "name": "Dhaka Bank PLC",
+  "mrdr": "payment-gateway"
+}

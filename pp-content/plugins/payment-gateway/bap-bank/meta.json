@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "bap-bank",
+  "name": "Bank Asia PLC",
+  "mrdr": "payment-gateway"
+}

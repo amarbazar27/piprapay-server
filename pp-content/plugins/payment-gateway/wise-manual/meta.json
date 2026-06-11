@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "wise-manual",
+  "name": "Wise Manual",
+  "mrdr": "payment-gateway"
+}

@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "cellfin-personal",
+  "name": "Cellfin Personal",
+  "mrdr": "payment-gateway"
+}

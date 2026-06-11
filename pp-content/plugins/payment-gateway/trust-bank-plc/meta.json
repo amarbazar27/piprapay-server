@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "trust-bank-plc",
+  "name": "Trust Bank PLC",
+  "mrdr": "payment-gateway"
+}

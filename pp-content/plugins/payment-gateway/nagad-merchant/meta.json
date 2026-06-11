@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "nagad-merchant",
+  "name": "Nagad merchant",
+  "mrdr": "payment-gateway"
+}

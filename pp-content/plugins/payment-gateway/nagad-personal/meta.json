@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "nagad-personal",
+  "name": "Nagad Personal",
+  "mrdr": "payment-gateway"
+}

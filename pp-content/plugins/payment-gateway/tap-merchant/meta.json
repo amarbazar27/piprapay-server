@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "tap-merchant",
+  "name": "Tap merchant",
+  "mrdr": "payment-gateway"
+}

@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "paystation",
+  "name": "PayStation",
+  "mrdr": "payment-gateway"
+}

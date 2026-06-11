@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "bkash-merchant",
+  "name": "Bkash Merchant",
+  "mrdr": "payment-gateway"
+}

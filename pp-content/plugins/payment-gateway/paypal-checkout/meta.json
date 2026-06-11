@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "paypal-checkout",
+  "name": "PayPal Checkout",
+  "mrdr": "payment-gateway"
+}

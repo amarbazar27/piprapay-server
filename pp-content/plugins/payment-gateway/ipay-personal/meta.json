@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "okwallet-personal",
+  "name": "OkWallet Personal",
+  "mrdr": "payment-gateway"
+}

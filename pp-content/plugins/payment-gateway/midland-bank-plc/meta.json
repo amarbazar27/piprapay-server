@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "midland-bank-plc",
+  "name": "Midland Bank PLC",
+  "mrdr": "payment-gateway"
+}

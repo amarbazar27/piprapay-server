@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "eps",
+  "name": "EPS",
+  "mrdr": "payment-gateway"
+}

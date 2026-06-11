@@ -1,0 +1,216 @@
+:root {
+    --primary-color: #3BB77E;
+    --secondary-color: #f8f9fc;
+    --success-color: #1cc88a;
+}
+
+body {
+    background-color: #f8f9fc;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.installer-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.installer-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+.installer-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.installer-body {
+    padding: 2rem;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e3e6f0;
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e3e6f0;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.step.active .step-number {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step.completed .step-number {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+.step.active .step-label {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.step.completed .step-label {
+    color: var(--success-color);
+}
+
+.step-content {
+    display: none;
+}
+
+.step-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group.required label:after {
+    content: " *";
+    color: #dc3545;
+}
+
+.installer-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e3e6f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.requirements-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.requirements-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.requirement-met {
+    color: var(--success-color);
+}
+
+.requirement-not-met {
+    color: #dc3545;
+}
+
+.progress {
+    height: 0.5rem;
+}
+
+.database-type-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.database-card {
+    max-width: 234px;
+    flex: 1;
+    cursor: pointer;
+    border: 2px solid #e3e6f0;
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.database-card:hover {
+    border-color: var(--primary-color);
+}
+
+.database-card.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(78, 115, 223, 0.05);
+}
+
+.database-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item-label {
+    font-weight: bold;
+}
+
+.success-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--success-color);
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+}
+
+.btn-primary:hover {
+    background-color: #17b67a;
+    border-color: #17b67a;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #14a96f;
+    border-color: #14a96f;
+    box-shadow: 0 0 0 0.25rem rgba(28, 200, 138, 0.5);
+}

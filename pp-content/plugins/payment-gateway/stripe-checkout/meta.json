@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "stripe-checkout",
+  "name": "Stripe Checkout",
+  "mrdr": "payment-gateway"
+}

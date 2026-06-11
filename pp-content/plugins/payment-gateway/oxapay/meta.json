@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "oxapay",
+  "name": "OxaPay Crypto",
+  "mrdr": "payment-gateway"
+}

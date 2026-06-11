@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "binance-merchant-api",
+  "name": "Binance Merchant Api",
+  "mrdr": "payment-gateway"
+}

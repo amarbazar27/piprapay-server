@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "paypal-manual",
+  "name": "PayPal Manual",
+  "mrdr": "payment-gateway"
+}

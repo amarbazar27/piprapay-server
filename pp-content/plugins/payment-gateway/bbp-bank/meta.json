@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "bbp-bank",
+  "name": "BRAC Bank PLC",
+  "mrdr": "payment-gateway"
+}

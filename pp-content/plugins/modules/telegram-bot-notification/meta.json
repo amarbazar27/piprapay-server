@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "telegram-bot-notification",
+  "name": "Telegram Bot Notification",
+  "mrdr": "modules"
+}

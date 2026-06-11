@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "rocket-agent",
+  "name": "Rocket Agent",
+  "mrdr": "payment-gateway"
+}

@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "upay-merchant",
+  "name": "Upay merchant",
+  "mrdr": "payment-gateway"
+}

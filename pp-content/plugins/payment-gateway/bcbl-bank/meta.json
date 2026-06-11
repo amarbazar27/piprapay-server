@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "bcbl-bank",
+  "name": "Bangladesh Commerce Bank Limited",
+  "mrdr": "payment-gateway"
+}

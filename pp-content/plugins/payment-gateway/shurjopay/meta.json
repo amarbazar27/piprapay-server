@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "shurjopay",
+  "name": "ShurjoPay",
+  "mrdr": "payment-gateway"
+}

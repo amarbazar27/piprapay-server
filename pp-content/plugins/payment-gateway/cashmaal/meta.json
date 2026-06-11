@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "cashmaal",
+  "name": "CashMaal",
+  "mrdr": "payment-gateway"
+}

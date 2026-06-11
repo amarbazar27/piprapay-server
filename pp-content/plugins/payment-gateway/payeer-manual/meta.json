@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "payeer-manual",
+  "name": "Payeer Manual",
+  "mrdr": "payment-gateway"
+}

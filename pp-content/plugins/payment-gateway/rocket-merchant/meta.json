@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "rocket-merchant",
+  "name": "Rocket merchant",
+  "mrdr": "payment-gateway"
+}

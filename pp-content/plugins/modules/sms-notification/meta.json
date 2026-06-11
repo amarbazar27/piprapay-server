@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "sms-notification",
+  "name": "SMS Notification",
+  "mrdr": "modules"
+}

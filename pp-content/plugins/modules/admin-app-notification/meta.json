@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "admin-app-notification",
+  "name": "Admin App Push Notificaiton",
+  "mrdr": "modules"
+}

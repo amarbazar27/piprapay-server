@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "upay-personal",
+  "name": "Upay Personal",
+  "mrdr": "payment-gateway"
+}

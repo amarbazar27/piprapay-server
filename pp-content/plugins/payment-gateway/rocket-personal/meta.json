@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "rocket-personal",
+  "name": "Rocket Personal",
+  "mrdr": "payment-gateway"
+}

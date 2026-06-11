@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "okwallet-agent",
+  "name": "OkWallet Agent",
+  "mrdr": "payment-gateway"
+}

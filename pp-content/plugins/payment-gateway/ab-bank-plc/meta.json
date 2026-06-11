@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "ab-bank-plc",
+  "name": "AB Bank PLC",
+  "mrdr": "payment-gateway"
+}

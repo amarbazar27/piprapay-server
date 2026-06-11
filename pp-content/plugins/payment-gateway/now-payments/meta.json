@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "now-payments",
+  "name": "NowPayments Crypto",
+  "mrdr": "payment-gateway"
+}

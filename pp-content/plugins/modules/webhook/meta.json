@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "webhook",
+  "name": "Webhook",
+  "mrdr": "modules"
+}

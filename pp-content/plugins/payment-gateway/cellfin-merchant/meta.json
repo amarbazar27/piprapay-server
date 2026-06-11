@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "cellfin-merchant",
+  "name": "Cellfin Merchant",
+  "mrdr": "payment-gateway"
+}

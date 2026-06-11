@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "ific-bank-plc",
+  "name": "IFIC Bank PLC",
+  "mrdr": "payment-gateway"
+}

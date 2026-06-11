@@ -1,0 +1,6 @@
+{
+  "type": "plugins",
+  "slug": "ucb-bank-plc",
+  "name": "UCB BANK PLC",
+  "mrdr": "payment-gateway"
+}
