@@ -52,10 +52,22 @@
     }
     
     if(isset($_GET['download'])){
-?>
-        <script>location.href = "https://github.com/PipraPay/PipraPay-Open-Source-App/";</script>
-<?php
-        exit();
+        if ($_GET['download'] === 'new') {
+            $file = __DIR__ . '/../docs/apps/piprapay-tool.apk';
+            if (file_exists($file)) {
+                header('Content-Type: application/vnd.android.package-archive');
+                header('Content-Disposition: attachment; filename="piprapay-tool.apk"');
+                header('Content-Length: ' . filesize($file));
+                readfile($file);
+                exit();
+            } else {
+                header('Location: https://' . $_SERVER['HTTP_HOST'] . '/docs/apps/piprapay-tool.apk');
+                exit();
+            }
+        } else {
+            header('Location: https://play.google.com/store/apps/details?id=com.qubeplug.billpax_tools');
+            exit();
+        }
     }
     
     if (function_exists('pp_trigger_hook')) {

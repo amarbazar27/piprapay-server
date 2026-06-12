@@ -27,20 +27,36 @@ if (file_exists(__DIR__."/pp-config.php")) {
                 echo 'System is under maintenance. Please try again later.';
                 exit();
             } else {
+                $payload = file_get_contents('php://input');
+                $decoded = json_decode($payload, true);
+                if (!is_array($decoded)) {
+                    $decoded = [];
+                }
+                $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+
                 $response = json_decode(getData($db_prefix.'settings', 'WHERE webhook="'.$webhook.'"'), true);
                 if ($response['status'] == true) {
                     $d_status = "Pairing";
-                    if (isset($_POST['d_model']) && isset($_POST['d_brand']) && isset($_POST['d_version']) && isset($_POST['d_api_level'])) {
-                        $d_model = escape_string($_POST['d_model']);
-                        $d_brand = escape_string($_POST['d_brand']);
-                        $d_version = escape_string($_POST['d_version']);
-                        $d_api_level = escape_string($_POST['d_api_level']);
+
+                    $d_model_raw = $_POST['d_model'] ?? ($decoded['d_model'] ?? null);
+                    $d_brand_raw = $_POST['d_brand'] ?? ($decoded['d_brand'] ?? null);
+                    $d_version_raw = $_POST['d_version'] ?? ($decoded['d_version'] ?? null);
+                    $d_api_level_raw = $_POST['d_api_level'] ?? ($decoded['d_api_level'] ?? null);
+
+                    $d_model = null;
+                    if ($d_model_raw !== null && $d_brand_raw !== null && $d_version_raw !== null && $d_api_level_raw !== null) {
+                        $d_model = escape_string($d_model_raw);
+                        $d_brand = escape_string($d_brand_raw);
+                        $d_version = escape_string($d_version_raw);
+                        $d_api_level = escape_string($d_api_level_raw);
 
                         $response_device = json_decode(getData($db_prefix.'devices', 'WHERE d_model="'.$d_model.'" AND  d_brand="'.$d_brand.'" AND  d_version="'.$d_version.'" AND  d_api_level="'.$d_api_level.'" '), true);
                         if ($response_device['status'] == true) {
 
                             if (isset($_POST['connection_status'])) {
                                 $d_status = escape_string($_POST['connection_status']);
+                            } else if (isset($decoded['connection_status'])) {
+                                $d_status = escape_string($decoded['connection_status']);
                             } else {
                                 $d_status = "Connected";
                             }
@@ -72,12 +88,6 @@ if (file_exists(__DIR__."/pp-config.php")) {
                             $d_status = "Connected";
                         }
                     }
-
-                    $payload = file_get_contents('php://input');
-
-                    $decoded = json_decode($payload, true);
-
-                    $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
                     if ($userAgent === 'mh-piprapay-api-key') {
                         $from = $decoded['from'] ?? ($_POST['from'] ?? '');
@@ -269,17 +279,31 @@ if (file_exists(__DIR__."/pp-config.php")) {
                     }
 
 
-                    if (isset($_POST['d_model']) || $userAgent === 'mh-piprapay-api-key' || (isset($decoded) && isset($decoded['from']))) {
+                    $isMobile = (
+                        $d_model !== null ||
+                        $userAgent === 'mh-piprapay-api-key' ||
+                        (isset($decoded) && isset($decoded['from'])) ||
+                        isset($_POST['from']) ||
+                        (isset($_SERVER['HTTP_USER_AGENT']) && stripos($_SERVER['HTTP_USER_AGENT'], 'dalvik') !== false) ||
+                        (isset($_SERVER['HTTP_USER_AGENT']) && stripos($_SERVER['HTTP_USER_AGENT'], 'volley') !== false)
+                    );
+                    if ($isMobile) {
                         echo json_encode(['status' => true, 'success' => true, 'message' => "Device ".$d_status]);
                     } else {
-                        echo json_encode(['status' => "true", 'message' => "Device ".$d_status]);
+                        echo json_encode(['status' => "true", 'success' => true, 'message' => "Device ".$d_status]);
                     }
                     exit();
                 } else {
-                    if (isset($_POST['d_model']) || $userAgent === 'mh-piprapay-api-key') {
+                    $isMobile = (
+                        (isset($_POST['d_model']) || (isset($decoded) && isset($decoded['d_model']))) ||
+                        $userAgent === 'mh-piprapay-api-key' ||
+                        (isset($_SERVER['HTTP_USER_AGENT']) && stripos($_SERVER['HTTP_USER_AGENT'], 'dalvik') !== false) ||
+                        (isset($_SERVER['HTTP_USER_AGENT']) && stripos($_SERVER['HTTP_USER_AGENT'], 'volley') !== false)
+                    );
+                    if ($isMobile) {
                         echo json_encode(['status' => false, 'success' => false, 'message' => "Invalid Webhook"]);
                     } else {
-                        echo json_encode(['status' => "false", 'message' => "Invalid Webhook"]);
+                        echo json_encode(['status' => "false", 'success' => false, 'message' => "Invalid Webhook"]);
                     }
                     exit();
                 }
