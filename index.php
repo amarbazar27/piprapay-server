@@ -69,6 +69,7 @@ if (file_exists(__DIR__."/pp-config.php")) {
                                 getCurrentDatetime('Y-m-d H:i:s')];
 
                             insertData($db_prefix.'devices', $columns, $values);
+                            $d_status = "Connected";
                         }
                     }
 
@@ -268,10 +269,18 @@ if (file_exists(__DIR__."/pp-config.php")) {
                     }
 
 
-                    echo json_encode(['status' => "true", 'message' => "Device ".$d_status]);
+                    if (isset($_POST['d_model']) || $userAgent === 'mh-piprapay-api-key' || (isset($decoded) && isset($decoded['from']))) {
+                        echo json_encode(['status' => true, 'success' => true, 'message' => "Device ".$d_status]);
+                    } else {
+                        echo json_encode(['status' => "true", 'message' => "Device ".$d_status]);
+                    }
                     exit();
                 } else {
-                    echo json_encode(['status' => "false", 'message' => "Invalid Webhook"]);
+                    if (isset($_POST['d_model']) || $userAgent === 'mh-piprapay-api-key') {
+                        echo json_encode(['status' => false, 'success' => false, 'message' => "Invalid Webhook"]);
+                    } else {
+                        echo json_encode(['status' => "false", 'message' => "Invalid Webhook"]);
+                    }
                     exit();
                 }
             }
