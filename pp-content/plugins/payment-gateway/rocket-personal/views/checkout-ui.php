@@ -527,9 +527,15 @@
                     <li class="d-flex">
                       <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center me-3" style="width: 24px; height: 24px; flex-shrink: 0;">3</div>
                       <p class="mb-0">
-                        Enter the Number: 
-                        <span class="text-primary fw-semibold bg-primary bg-opacity-10 px-2 py-1 rounded"><?php echo $settings['payment_number']?></span>
-                        <button class="btn btn-primary btn-sm ms-2 px-2 py-1 d-inline-flex align-items-center btn-number-copy" onclick="copyText('<?php echo $settings['payment_number']?>', 'btn-number-copy')">
+                      Enter the Number: 
+                      <span class="text-primary fw-semibold bg-primary bg-opacity-10 px-2 py-1 rounded">
+                        <?php 
+                          $metadata = json_decode($transaction_details['response'][0]['transaction_metadata'], true) ?? [];
+                          $rocket_number = !empty($metadata['rocket_number']) ? $metadata['rocket_number'] : $settings['payment_number'];
+                          echo htmlspecialchars($rocket_number);
+                        ?>
+                      </span>
+                      <button class="btn btn-primary btn-sm ms-2 px-2 py-1 d-inline-flex align-items-center btn-number-copy" onclick="copyText('<?php echo htmlspecialchars($rocket_number)?>', 'btn-number-copy')">
                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-files me-1" viewBox="0 0 16 16">
                             <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
                           </svg>
