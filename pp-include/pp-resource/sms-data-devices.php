@@ -261,6 +261,22 @@
                          <span class="input-group-text btn-arrow-repeat" style="cursor:pointer" onclick="generateapi()"><i class="bi bi-arrow-repeat"></i></span>
                     </div>
 
+                    <div class="mt-4 text-center">
+                      <p class="small text-secondary fw-bold mb-2">Scan QR Code to Connect App Instantly</p>
+                      <?php 
+                        $webhook_val = $global_setting_response['response'][0]['webhook'];
+                        if ($webhook_val !== "--") {
+                          $qr_data = "https://".$_SERVER['HTTP_HOST']."/?webhook=".$webhook_val;
+                          $qr_src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=".urlencode($qr_data);
+                          echo '<div class="d-inline-block p-3 bg-white rounded shadow-sm border" style="margin-top: 5px;">';
+                          echo '<img src="'.$qr_src.'" alt="Scan QR Code to Connect App" style="width: 180px; height: 180px; display: block; margin: 0 auto;">';
+                          echo '</div>';
+                        } else {
+                          echo '<p class="text-danger small">Please generate Webhook Key first to view QR code.</p>';
+                        }
+                      ?>
+                    </div>
+
                   </div>
                 </div>
           </div>
