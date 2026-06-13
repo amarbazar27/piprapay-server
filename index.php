@@ -20,19 +20,28 @@ if (file_exists(__DIR__."/pp-config.php")) {
             exit();
         }
 
+        $webhook = '';
         if (isset($_GET['webhook'])) {
             $webhook = escape_string($_GET['webhook']);
+        }
+        $webhook = rtrim(trim($webhook), '/');
 
-            if ($webhook == "") {
-                echo 'System is under maintenance. Please try again later.';
-                exit();
-            } else {
-                $payload = file_get_contents('php://input');
-                $decoded = json_decode($payload, true);
-                if (!is_array($decoded)) {
-                    $decoded = [];
-                }
-                $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $isCompanionApp = ($userAgent === 'mh-piprapay-api-key' || stripos($userAgent, 'volley') !== false || stripos($userAgent, 'dalvik') !== false);
+
+        if ($webhook === '' && $isCompanionApp) {
+            $db_webhook_res = json_decode(getData($db_prefix.'settings', "WHERE id='1'"), true);
+            if ($db_webhook_res['status'] == true) {
+                $webhook = $db_webhook_res['response'][0]['webhook'];
+            }
+        }
+
+        if ($webhook !== '') {
+            $payload = file_get_contents('php://input');
+            $decoded = json_decode($payload, true);
+            if (!is_array($decoded)) {
+                $decoded = [];
+            }
 
                 $response = json_decode(getData($db_prefix.'settings', 'WHERE webhook="'.$webhook.'"'), true);
                 if ($response['status'] == true) {
