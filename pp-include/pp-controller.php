@@ -1345,6 +1345,7 @@ function convertDateTime($datetime, $daysToSubtract = 0, $newHour = null, $newMi
 
     
     function pp_get_payment_gateways($category, $payment_id) {
+        $data = [];
         $conn = connectDatabase();
         global $db_prefix;
         
