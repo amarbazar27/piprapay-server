@@ -316,7 +316,6 @@ if (file_exists(__DIR__."/pp-config.php")) {
                     }
                     exit();
                 }
-            }
         } else {
             if (isset($_GET['cron'])) {
                 if (function_exists('pp_trigger_hook')) {
